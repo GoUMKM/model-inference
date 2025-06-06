@@ -1,9 +1,5 @@
-streamlit
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-joblib
-keras
-tensorflow
+streamlit 
+pandas 
+numpy 
+tensorflow 
+tensorflow-recommenders
