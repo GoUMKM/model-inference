@@ -1,5 +1,5 @@
 tensorflow
-tensorflow-recommenders
+
 streamlit
 pandas
 numpy
