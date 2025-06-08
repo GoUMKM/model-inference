@@ -325,3 +325,37 @@ st.sidebar.markdown("""
 3. Click 'Get Recommendations' to view the top UMKM matches.
 4. Expand each recommendation to see detailed UMKM information.
 """)
+
+# Load model
+model = load_model()
+
+# User selects investor ID
+investor_ids = investor_df['investor_id'].dropna().unique().tolist()
+selected_investor_id = st.selectbox("Select Investor ID", investor_ids)
+
+# Number of recommendations
+top_k = st.slider("Number of Recommendations", min_value=1, max_value=10, value=5)
+
+# Button to trigger recommendations
+if st.button("Get Recommendations"):
+    if model is not None:
+        with st.spinner("Computing recommendations..."):
+            recommendations = get_recommendations(selected_investor_id, model, top_k=top_k)
+
+            if recommendations:
+                st.success("Recommendations retrieved successfully!")
+                st.subheader("Top Recommended UMKMs:")
+                for idx, (umkm_id, score) in enumerate(recommendations, start=1):
+                    umkm_info = umkm_df[umkm_df['umkm_id'] == umkm_id].iloc[0]
+                    st.markdown(f"**{idx}. UMKM ID: {umkm_id}**  \n"
+                                f"Kategori: {umkm_info['kategori']}  \n"
+                                f"Model Bisnis: {umkm_info['model_bisnis']}  \n"
+                                f"Skala: {umkm_info['skala']}  \n"
+                                f"Jangkauan: {umkm_info['jangkauan']}  \n"
+                                f"Provinsi: {umkm_info['provinsi']}  \n"
+                                f"Pertumbuhan Pendapatan: {umkm_info['pertumbuhan_pendapatan']}  \n"
+                                f"Skor Kecocokan: {score:.4f}")
+            else:
+                st.warning("No recommendations could be generated.")
+    else:
+        st.error("Model is not loaded. Please check checkpoint path or model definition.")
