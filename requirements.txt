@@ -1,4 +1,7 @@
+tensorflow==2.15.0
+tensorflow-recommenders==0.7.0
+streamlit
 pandas
 numpy
-tensorflow
-
+scikit-learn
+joblib
