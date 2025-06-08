@@ -1,5 +1,5 @@
-tensorflow==2.15.0
-tensorflow-recommenders==0.7.0
+tensorflow
+tensorflow-recommenders
 streamlit
 pandas
 numpy
