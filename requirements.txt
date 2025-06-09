@@ -1,7 +1,7 @@
-tensorflow
-tensorflow-recommenders
-streamlit
-pandas
-numpy
-scikit-learn
-joblib
+tensorflow==2.11.0
+tensorflow-recommenders==0.7.3
+streamlit==1.24.0
+pandas==1.5.3
+numpy==1.23.5
+scikit-learn==1.2.2
+joblib==1.2.0
